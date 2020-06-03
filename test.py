@@ -4,4 +4,4 @@ import box
 pool = box.mcoclootpool()
 
 cav = box.CavCrystal("Cavalier Crystal", pool)
-cav.printdroptable()
+print(cav.spin())

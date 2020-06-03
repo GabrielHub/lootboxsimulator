@@ -1,4 +1,5 @@
 import json
+import random
 
 
 # Loot box, odds are a dictionary ex. "rare": 0.04
@@ -12,13 +13,19 @@ class Box:
     def buildpool(self):
         pass
 
+    def spin(self):
+        pick_rarity = random.choices(list(self.odds.keys()), list(self.odds.values()))[0]
+        pick_from_rarity = random.choice(self.droptable[pick_rarity])
+        return pick_from_rarity.name, pick_rarity
+
     def printdroptable(self):
         if self.droptable is None:
             print("Loot table is empty!")
         else:
             for i in self.droptable:
-                print(i + " Drops:")
-                print(self.droptable[i])
+                print("\n", i, str(len(self.droptable[i])), "Drops:")
+                for j in self.droptable[i]:
+                    print(j.name)
 
 
 # basic item
