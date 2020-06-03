@@ -18,7 +18,7 @@ class Box:
         pick_rarity = random.choices(list(self.odds.keys()), list(self.odds.values()))[0]
         # assuming the items in a rarity pool have equal weight, now pick from weighted pool
         pick_from_rarity = random.choice(self.droptable[pick_rarity])
-        return pick_from_rarity.name, pick_rarity
+        return pick_from_rarity, pick_rarity
 
     def printdroptable(self):
         if self.droptable is None:
