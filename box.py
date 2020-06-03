@@ -14,7 +14,9 @@ class Box:
         pass
 
     def spin(self):
+        # pick rarity gets the rarity of the item first, based off the weighted odds
         pick_rarity = random.choices(list(self.odds.keys()), list(self.odds.values()))[0]
+        # assuming the items in a rarity pool have equal weight, now pick from weighted pool
         pick_from_rarity = random.choice(self.droptable[pick_rarity])
         return pick_from_rarity.name, pick_rarity
 
@@ -51,6 +53,7 @@ class Champion(Item):
 
 #  basic cavalier crystal, 3* and 4* pools are the same
 class CavCrystal(Box):
+    # manually add the odds for each crystal type, init empty droptable
     def __init__(self, name, pool):
         super().__init__(name, {
             "star3": 0.5,
@@ -66,6 +69,7 @@ class CavCrystal(Box):
         }
         self.buildpool()
 
+    # 3 and 4 stars paired together b/c they have the same pools
     def buildpool(self):
         for champ in self.pool:
             if champ.basic4:
