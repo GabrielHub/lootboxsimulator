@@ -1,7 +1,7 @@
 import box
 import tkinter as tk
-
-
+import random
+"""
 def OpenCrystal():
     cav = box.CavCrystal("Cavalier Crystal", pool)
     champ = cav.spin()
@@ -31,13 +31,9 @@ pic.pack(fill=tk.BOTH)
 title = tk.Label(text="Champ Name, Rarity")
 title.pack(fill=tk.BOTH)
 
-
-"""
-title = tk.Label(text=(champ[0].name, champ[1]))
-title.pack()
-photo = tk.PhotoImage(file="assets/data/images/portraits/" + champ[0].pic_id + ".png")
-pic = tk.Label(image=photo)
-pic.pack()
-"""
-
 window.mainloop()
+"""
+
+pool = box.Pool(0)
+cav = box.CavCrystal("Cavalier Crystal")
+print(cav.spin(pool.droptable))
