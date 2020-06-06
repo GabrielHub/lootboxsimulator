@@ -1,5 +1,6 @@
 import json
 import random
+import tkinter as tk
 
 
 # Loot box, odds are a dictionary ex. "rare": 0.04
