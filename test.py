@@ -1,6 +1,6 @@
 import box
-import tkinter as tk
-import random
+# import tkinter as tk
+
 """
 def OpenCrystal():
     cav = box.CavCrystal("Cavalier Crystal", pool)
@@ -33,7 +33,27 @@ title.pack(fill=tk.BOTH)
 
 window.mainloop()
 """
+print("MCOC Crystal Examples: ")
 
 pool = box.Pool(0)
-cav = box.CavCrystal("Cavalier Crystal")
-print(cav.spin(pool.droptable))
+
+gmc = box.GMC()
+print(gmc.name, " result: ", gmc.spin(pool.droptable))
+
+cav = box.CavCrystal()
+print(cav.name, " result: ", cav.spin(pool.droptable))
+
+basic4 = box.Box("4* Basic", {"4star": 1})
+print(basic4.name, " result: ", basic4.spin(pool.droptable))
+
+basic5 = box.Box("5* Basic", {"5basic": 1})
+print(basic5.name, " result: ", basic5.spin(pool.droptable))
+
+feat5 = box.Box("5* Featured", {"5feature": 1})
+print(feat5.name, " result: ", feat5.spin(pool.droptable))
+
+basic6 = box.Box("6* Basic", {"6basic": 1})
+print(basic6.name, " result: ", basic6.spin(pool.droptable))
+
+feat6 = box.Box("6* Featured", {"6feature": 1})
+print(feat6.name, " result: ", feat6.spin(pool.droptable))

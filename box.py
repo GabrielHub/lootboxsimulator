@@ -108,16 +108,16 @@ class Box:
 
 # basic item
 class Item:
-    def __init__(self, name):
-        self.name = name
+    def __init__(self, name, u_id):
+        self.name = name  # display name
+        self.u_id = u_id  # unique id -
 
 
 # MCOC item
 class Champion(Item):
     def __init__(self, name, pic_id, u_id, star2, star3):
-        super().__init__(name)  # display name
+        super().__init__(name, u_id)
         self.pic_id = pic_id  # name that resolves to potrait filename - mattkraftid
-        self.u_id = u_id  # unique id - champ number
         self.star2 = star2  # 'y' for available, 'n' for no
         self.star3 = star3
 
@@ -125,10 +125,26 @@ class Champion(Item):
 #  basic cavalier crystal, 3* and 4* pools are the same I think
 class CavCrystal(Box):
     # manually add the odds for each crystal type
-    def __init__(self, name):
-        super().__init__(name, {
+    def __init__(self):
+        super().__init__("Cavalier Crystal", {
             "3star": 0.5,
             "4star": 0.38,
             "5basic": 0.11,
             "6basic": 0.01
             })
+
+
+#  basic grand master crystal, 3* and 4* pools are the same I think
+class GMC(Box):
+    # manually add the odds for each crystal type
+    def __init__(self):
+        super().__init__("Grandmaster Crystal", {
+            "3star": 0.82,
+            "4star": 0.15,
+            "5basic": 0.03
+            })
+
+
+# featured cav crystal, with input for multitude of featured champs
+class FeatCavCrystal(CavCrystal):
+    pass
