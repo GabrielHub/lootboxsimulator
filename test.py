@@ -2,17 +2,22 @@ import box
 import tkinter as tk
 
 
-def OpenCrystal():
-    cav = box.CavCrystal()
-    champ = cav.spin(pool.droptable)
+def OpenCrystal(crystal, pic, text):
+    champ = crystal.spin(pool.droptable)
 
+    # process of converting champ name to picture id -> picture file name
     p_id = pool.mcocgetpotrait(champ[0])
-    window.photo = tk.PhotoImage(file="assets/data/images/portraits/" + p_id + ".png")
+    window.photo = tk.PhotoImage(
+        file="assets/data/images/portraits/" + p_id + ".png")
     pic.configure(image=window.photo)
     pic["image"] = window.photo
 
-    title["text"] = champ
+    text["text"] = champ
     window.update_idletasks()
+
+
+def OpenCav():
+    OpenCrystal(box.CavCrystal(), cav_pic, cav_title)
 
 
 # open tkinter window
@@ -21,17 +26,20 @@ window = tk.Tk()
 # must init the total pool of items that can be pulled
 pool = box.Pool(0)
 
+# Cav Crystal Example
+window.photo = tk.PhotoImage(file="assets/data/images/crystals/crystal_multi_alliance.png")
+cav_pic = tk.Label(image=window.photo)
 
-cav_button = tk.Button(text="Cavalier Crystal", fg="white", bg="#a442f5", command=OpenCrystal)
+cav_title = tk.Label(text="Champ Name, Rarity")
+
+cav_button = tk.Button(text="Cavalier Crystal", fg="white", bg="#a442f5", command=OpenCav)
 cav_button.pack(fill=tk.BOTH, side=tk.LEFT)
 
-window.photo = tk.PhotoImage(file="assets/data/images/portraits/aegon.png")
-pic = tk.Label(image=window.photo)
-pic.pack(fill=tk.BOTH)
-title = tk.Label(text="Champ Name, Rarity")
-title.pack(fill=tk.BOTH)
+cav_pic.pack(fill=tk.BOTH)
+cav_title.pack(fill=tk.BOTH)
 
 window.mainloop()
+
 """
 print("MCOC Crystal Examples: ")
 
