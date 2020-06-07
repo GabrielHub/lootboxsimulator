@@ -6,12 +6,12 @@ import random
 class Pool:
     def __init__(self, g):
         if g == 0:
-            self.pool = self.mcoclootpool()
+            self.pool = self.mcoclootpool()  # to make it easier for portraits, dict of champ name: champ object
             self.droptable = self.mcocdroptable()
 
     # for mcoc example, creates the champion loot pool and returns the data
     def mcoclootpool(self):
-        ret = set()  # list holds all champs
+        ret = {}  # list holds all champs
 
         # first load json to fill attributes corresponding to portrait file names, and unique ids
 
@@ -23,8 +23,7 @@ class Pool:
         # name, pic_id, u_id, basic4, basic5, basic6, feature5, feature6
         for i in data:
             if i["gsx$status"]["$t"] == "released":
-                champ = Champion(i["gsx$champ"]["$t"], i["gsx$mattkraftid"]["$t"], i["gsx$champnumber"]["$t"], i["gsx$star_2"]["$t"], i["gsx$star_3"]["$t"])
-                ret.add(champ)
+                ret[i["gsx$champ"]["$t"]] = Champion(i["gsx$champ"]["$t"], i["gsx$mattkraftid"]["$t"], i["gsx$champnumber"]["$t"], i["gsx$star_2"]["$t"], i["gsx$star_3"]["$t"])
         return ret
 
     # build the possible drop tables
@@ -79,6 +78,10 @@ class Pool:
         # for other specialty crystals, an inherited class should overload this method
         return ret
 
+    # given the name of a champ, return the pic_id
+    def mcocgetpotrait(self, name):
+        return self.pool[name].pic_id
+
     def printdroptable(self):
         if self.droptable is None:
             print("Loot table is empty!")
@@ -104,6 +107,9 @@ class Box:
         # first index contains extra info about the pool, ex. command, number of hamps in table, and % of each
         pick_from_rarity = random.choice([x for index, x in enumerate(table[pick_rarity]) if index != 0])
         return pick_from_rarity, pick_rarity[0] + " star"
+
+    def reelspin(self, table):
+        pass
 
 
 # basic item

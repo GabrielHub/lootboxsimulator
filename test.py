@@ -1,17 +1,17 @@
 import box
-# import tkinter as tk
+import tkinter as tk
 
-"""
+
 def OpenCrystal():
-    cav = box.CavCrystal("Cavalier Crystal", pool)
-    champ = cav.spin()
-    print(champ[0].pic_id)
-    window.photo = tk.PhotoImage(file="assets/data/images/portraits/" + champ[0].pic_id + ".png")
+    cav = box.CavCrystal()
+    champ = cav.spin(pool.droptable)
+
+    p_id = pool.mcocgetpotrait(champ[0])
+    window.photo = tk.PhotoImage(file="assets/data/images/portraits/" + p_id + ".png")
     pic.configure(image=window.photo)
     pic["image"] = window.photo
 
-    n_text = champ[0].name, champ[1]
-    title["text"] = n_text
+    title["text"] = champ
     window.update_idletasks()
 
 
@@ -19,11 +19,11 @@ def OpenCrystal():
 window = tk.Tk()
 
 # must init the total pool of items that can be pulled
-pool = box.mcoclootpool()
+pool = box.Pool(0)
 
-cav_photo = tk.PhotoImage(file="assets/data/images/crystals/crystal_multi_dim_purple.png")
-cav_button = tk.Button(image=cav_photo, command=OpenCrystal)
-cav_button.pack(fill=tk.BOTH)
+
+cav_button = tk.Button(text="Cavalier Crystal", fg="white", bg="#a442f5", command=OpenCrystal)
+cav_button.pack(fill=tk.BOTH, side=tk.LEFT)
 
 window.photo = tk.PhotoImage(file="assets/data/images/portraits/aegon.png")
 pic = tk.Label(image=window.photo)
@@ -57,3 +57,4 @@ print(basic6.name, " result: ", basic6.spin(pool.droptable))
 
 feat6 = box.Box("6* Featured", {"6feature": 1})
 print(feat6.name, " result: ", feat6.spin(pool.droptable))
+"""
